@@ -21,7 +21,7 @@ open class SSQuadrilateralModel: NSObject  {
         self.quad = quad;
     }
     
-    @objc open func scale(fromSize fromSize: CGSize, toSize toSize: CGSize, withRotationAngle rotationAngle: CGFloat = 0.0) -> SSQuadrilateralModel {
+    @objc open func scale(fromSize: CGSize,toSize: CGSize, withRotationAngle rotationAngle: CGFloat = 0.0) -> SSQuadrilateralModel {
         SSQuadrilateralModel(quad: quad.scale(fromSize, toSize,withRotationAngle: rotationAngle))
     }
 }
@@ -35,7 +35,7 @@ open class SSQuadrilateralModel: NSObject  {
 }
 // 相机回调转化处理 。
 open class SSCameraScannerDelegateBridge: NSObject {
-     weak var delegate:SSCameraScannerBridgeDelegate?
+    @objc open weak var delegate:SSCameraScannerBridgeDelegate?
     
     @objc open func bind(scanner:CameraScannerViewController) {
         scanner.delegate = self;
@@ -87,6 +87,14 @@ extension QuadrilateralView {
         let transformedQuad = quadModel.quad.applyTransforms(transforms)
         drawQuadrilateral(quad: transformedQuad, animated: false)
     }
+    
+    @objc open var quadModel:SSQuadrilateralModel? {
+        if let quad = quad {
+            return SSQuadrilateralModel(quad: quad);
+        }
+        return nil;
+    }
+    
     
 }
 

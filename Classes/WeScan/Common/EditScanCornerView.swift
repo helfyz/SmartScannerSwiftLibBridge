@@ -12,7 +12,7 @@ extension UIColor {
     func sscolor(hex: uint, alpha:CGFloat = 1.0) -> UIColor {
         UIColor(red: CGFloat(((hex & 0xFF0000) >> 16))/255.0,
                 green: CGFloat(((hex & 0xFF00) >> 8))/255.0,
-                blue:  CGFloat((hex & 0xFF)),
+                blue:  CGFloat((hex & 0xFF)) / 255.0,
                                alpha: alpha)
                 }
 }
@@ -44,7 +44,7 @@ open class EditScanCornerView: UIView {
     init(frame: CGRect, position: CornerPosition) {
         self.position = position
         super.init(frame: frame)
-        backgroundColor = UIColor.color(hex: 0x242739)
+        self.backgroundColor = UIColor.color(hex: 0x242739)
         clipsToBounds = true
         self.layer.borderWidth = 2.0
         self.layer.borderColor = UIColor.color(hex: 0xFFB82A).cgColor
